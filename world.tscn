@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://556elbo3lb5b"]
+[gd_scene load_steps=4 format=3 uid="uid://bqm78vxrrul8l"]
 
 [ext_resource type="PackedScene" uid="uid://bxpu770henayg" path="res://player/player.tscn" id="2_2vnn4"]
 [ext_resource type="PackedScene" uid="uid://c2d6n0760qnr1" path="res://tile_map.tscn" id="2_og8ci"]
+[ext_resource type="PackedScene" path="res://spikes/spikes.tscn" id="3_ime4g"]
 
 [node name="World" type="Node2D"]
 
@@ -10,3 +11,7 @@ layer_0/tile_data = PackedInt32Array(589824, 65536, 7, 589825, 131072, 7, 589826
 
 [node name="Player" parent="." instance=ExtResource("2_2vnn4")]
 position = Vector2(108, 108)
+z_index = 1
+
+[node name="Spikes" parent="." instance=ExtResource("3_ime4g")]
+position = Vector2(153, 126)
