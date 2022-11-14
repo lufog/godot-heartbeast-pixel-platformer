@@ -6,9 +6,14 @@ enum { MOVE, CLIMB }
 
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var state := MOVE
+var double_jump := 1
+var buffered_jump := false
+var coyote_jump := false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var ladder_check_ray_cast: RayCast2D = $LadderCheckRayCast
+@onready var jump_buffer_timer: Timer = $JumpBufferTimer
+@onready var coyote_jump_timer: Timer = $CoyoteJumpTimer
 
 
 func _physics_process(delta: float) -> void:
@@ -21,7 +26,7 @@ func _physics_process(delta: float) -> void:
 			climb_state(delta, direction)
 
 
-func move_state(delta: float, direction_x: int) -> void:
+func move_state(delta: float, direction_x: float) -> void:
 	if is_on_ladder() and Input.is_action_pressed("ui_up"):
 		state = CLIMB
 	
@@ -35,13 +40,24 @@ func move_state(delta: float, direction_x: int) -> void:
 	else:
 		animated_sprite.play("idle")
 	
-	# Handle Jump.
 	if is_on_floor():
-		if Input.is_action_pressed("ui_up"):
+		double_jump = move_data.double_jump_count
+		
+	if is_on_floor() or coyote_jump:
+		if Input.is_action_just_pressed("ui_up") or buffered_jump:
 			velocity.y = move_data.jump_velocity
+			buffered_jump = false
 	else:
 		if Input.is_action_just_released("ui_up") and velocity.y < move_data.half_jump_velocity:
 			velocity.y = move_data.half_jump_velocity
+		
+		if Input.is_action_just_pressed("ui_up"):
+			buffered_jump = true
+			jump_buffer_timer.start()
+		
+		if Input.is_action_just_pressed("ui_up") and double_jump > 0:
+			velocity.y = move_data.jump_velocity
+			double_jump -= 1
 	
 	if direction_x:
 		velocity.x = move_toward(velocity.x, direction_x * move_data.max_speed, move_data.acceleration) 
@@ -49,20 +65,23 @@ func move_state(delta: float, direction_x: int) -> void:
 		velocity.x = move_toward(velocity.x, 0, move_data.friction)
 	
 	var was_in_air := not is_on_floor()
-	
-	@warning_ignore(return_value_discarded)
 	move_and_slide()
+	var on_floor := is_on_floor()
 	
-	if is_on_floor() and was_in_air:
+	if on_floor and was_in_air:
 		animated_sprite.play("run")
 		animated_sprite.frame = 1
-
+	
+	var just_left_ground := not was_in_air and not on_floor
+	if just_left_ground and velocity.y >= 0:
+		coyote_jump = true
+		coyote_jump_timer.start()
 
 func climb_state(delta: float, direction: Vector2) -> void:
 	if not is_on_ladder():
 		state = MOVE
 	
-	velocity = direction * 50
+	velocity = direction * move_data.climb_speed
 	
 	if direction.length() != 0:
 		animated_sprite.play("run")
@@ -78,3 +97,11 @@ func is_on_ladder() -> bool:
 	
 	var collider := ladder_check_ray_cast.get_collider()
 	return collider is Ladder
+
+
+func _on_jump_buffer_timer_timeout() -> void:
+	buffered_jump = false
+
+
+func _on_coyote_jump_timer_timeout() -> void:
+	coyote_jump = false
