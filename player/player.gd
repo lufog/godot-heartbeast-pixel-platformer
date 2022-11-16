@@ -46,6 +46,7 @@ func move_state(delta: float, direction_x: float) -> void:
 	if is_on_floor() or coyote_jump:
 		if Input.is_action_just_pressed("ui_up") or buffered_jump:
 			velocity.y = move_data.jump_velocity
+			SoundPlayer.play_sound(SoundPlayer.JUMP_AUDIO_STREAM)
 			buffered_jump = false
 	else:
 		if Input.is_action_just_released("ui_up") and velocity.y < move_data.half_jump_velocity:
@@ -57,6 +58,7 @@ func move_state(delta: float, direction_x: float) -> void:
 		
 		if Input.is_action_just_pressed("ui_up") and double_jump > 0:
 			velocity.y = move_data.jump_velocity
+			SoundPlayer.play_sound(SoundPlayer.JUMP_AUDIO_STREAM)
 			double_jump -= 1
 	
 	if direction_x:
@@ -77,6 +79,7 @@ func move_state(delta: float, direction_x: float) -> void:
 		coyote_jump = true
 		coyote_jump_timer.start()
 
+
 func climb_state(delta: float, direction: Vector2) -> void:
 	if not is_on_ladder():
 		state = MOVE
@@ -89,6 +92,11 @@ func climb_state(delta: float, direction: Vector2) -> void:
 		animated_sprite.play("idle")
 	
 	move_and_slide()
+
+
+func die() -> void:
+	SoundPlayer.play_sound(SoundPlayer.HURT_AUDIO_STREAM)
+	get_tree().reload_current_scene()
 
 
 func is_on_ladder() -> bool:

@@ -22,10 +22,10 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_s3ibf"]
-resource_name = "move_along_path_loop"
+[sub_resource type="Animation" id="Animation_jg2fe"]
+resource_name = "move_along_path_bounce"
 length = 4.0
-loop_mode = 1
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -39,10 +39,10 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_jg2fe"]
-resource_name = "move_along_path_bounce"
+[sub_resource type="Animation" id="Animation_s3ibf"]
+resource_name = "move_along_path_loop"
 length = 4.0
-loop_mode = 2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
