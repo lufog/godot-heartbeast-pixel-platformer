@@ -14,6 +14,7 @@ var coyote_jump := false
 @onready var ladder_check_ray_cast: RayCast2D = $LadderCheckRayCast
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var coyote_jump_timer: Timer = $CoyoteJumpTimer
+@onready var camera_transform: RemoteTransform2D = $CameraTransform
 
 
 func _physics_process(delta: float) -> void:
@@ -94,9 +95,15 @@ func climb_state(delta: float, direction: Vector2) -> void:
 	move_and_slide()
 
 
+func connect_camera(camera: Camera2D) -> void:
+	camera_transform.remote_path = camera.get_path()
+	camera_transform.force_update_cache()
+
+
 func die() -> void:
 	SoundPlayer.play_sound(SoundPlayer.HURT_AUDIO_STREAM)
-	get_tree().reload_current_scene()
+	Events.player_died.emit()
+	queue_free()
 
 
 func is_on_ladder() -> bool:

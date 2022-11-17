@@ -30,6 +30,10 @@ layer_0/tile_data = PackedInt32Array(589824, 65536, 7, 589825, 131072, 7, 589826
 position = Vector2(315, 144)
 z_index = 1
 
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(315, 109)
+current = true
+
 [node name="Spikes" parent="." instance=ExtResource("3_ime4g")]
 position = Vector2(153, 126)
 
@@ -67,3 +71,6 @@ position = Vector2(207, 72)
 curve = SubResource("Curve2D_2pnd5")
 animation_type = 1
 speed = 2.0
+
+[node name="RespawnTimer" type="Timer" parent="."]
+one_shot = true
