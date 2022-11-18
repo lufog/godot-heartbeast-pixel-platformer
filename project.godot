@@ -42,6 +42,10 @@ config/icon="res://icon.svg"
 SoundPlayer="*res://sound_player/sound_player.tscn"
 Events="*res://events.gd"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=0
+
 [display]
 
 window/size/viewport_width=320

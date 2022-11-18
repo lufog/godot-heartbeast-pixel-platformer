@@ -14,6 +14,7 @@ func _ready() -> void:
 	player_spawn_position = player.position
 	player.connect_camera(camera)
 	Events.player_died.connect(_on_player_died)
+	Events.hit_checkpoint.connect(_on_hit_checkpoint)
 
 
 func _on_player_died() -> void:
@@ -23,3 +24,7 @@ func _on_player_died() -> void:
 	add_child(player)
 	player.position = player_spawn_position
 	player.connect_camera(camera)
+
+
+func _on_hit_checkpoint(checkpoint_position) -> void:
+	player_spawn_position = checkpoint_position

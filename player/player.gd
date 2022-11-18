@@ -81,7 +81,7 @@ func move_state(delta: float, direction_x: float) -> void:
 		coyote_jump_timer.start()
 
 
-func climb_state(delta: float, direction: Vector2) -> void:
+func climb_state(_delta: float, direction: Vector2) -> void:
 	if not is_on_ladder():
 		state = MOVE
 	
