@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfx7tilj0jige"]
+
+[ext_resource type="Script" path="res://enemies/stomp_enemy.gd" id="1_6xkeu"]
+[ext_resource type="Texture2D" uid="uid://jypl1fenl5sj" path="res://characters_packed.png" id="1_k0hx0"]
+[ext_resource type="PackedScene" uid="uid://cyfk3gquma32a" path="res://hitbox/hitbox.tscn" id="2_imq06"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vayvb"]
+atlas = ExtResource("1_k0hx0")
+region = Rect2(120, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fw0m"]
+atlas = ExtResource("1_k0hx0")
+region = Rect2(96, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tda8y"]
+animations = [{
+"frames": [SubResource("AtlasTexture_vayvb")],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_3fw0m")],
+"loop": true,
+"name": &"rising",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_ken0m"]
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v04f1"]
+gradient = SubResource("Gradient_ken0m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qdb1t"]
+emission_shape = 3
+emission_box_extents = Vector3(9, 2, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, 10, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -180.0
+angle_max = 180.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_v04f1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llg8l"]
+size = Vector2(14, 14)
+
+[node name="StompEnemy" type="Node2D"]
+script = ExtResource("1_6xkeu")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
+frames = SubResource("SpriteFrames_tda8y")
+animation = &"rising"
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qdb1t")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_imq06")]
+position = Vector2(0, -9)
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_llg8l")
+
+[node name="RayCast" type="RayCast2D" parent="."]
+position = Vector2(0, -9)
+target_position = Vector2(0, 9)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true

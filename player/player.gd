@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 
 
 func move_state(delta: float, direction_x: float) -> void:
-	if is_on_ladder() and Input.is_action_pressed("ui_up"):
+	if is_on_ladder() and Input.is_action_just_pressed("ui_up"):
 		state = CLIMB
 	
 	if not is_on_floor():
