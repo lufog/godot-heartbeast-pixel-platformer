@@ -9,8 +9,8 @@ script = ExtResource("2_m2vy1")
 jump_velocity = -260.0
 half_jump_velocity = -110.0
 max_speed = 60.0
-acceleration = 30.0
-friction = 10.0
+acceleration = 1800.0
+friction = 600.0
 climb_speed = 50.0
 double_jump_count = 1
 

@@ -63,9 +63,9 @@ func move_state(delta: float, direction_x: float) -> void:
 			double_jump -= 1
 	
 	if direction_x:
-		velocity.x = move_toward(velocity.x, direction_x * move_data.max_speed, move_data.acceleration) 
+		velocity.x = move_toward(velocity.x, direction_x * move_data.max_speed, move_data.acceleration * delta) 
 	else:
-		velocity.x = move_toward(velocity.x, 0, move_data.friction)
+		velocity.x = move_toward(velocity.x, 0, move_data.friction * delta)
 	
 	var was_in_air := not is_on_floor()
 	move_and_slide()
