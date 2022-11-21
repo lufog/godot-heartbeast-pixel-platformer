@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dyucxy5suye6s" path="res://levels/level.tscn" id="1_20vh3"]
+[ext_resource type="PackedScene" uid="uid://c2d6n0760qnr1" path="res://world/tile_map.tscn" id="2_cji6c"]
+[ext_resource type="PackedScene" uid="uid://crdvsnvg40dq" path="res://enemies/walking_enemy.tscn" id="4_de4l8"]
+[ext_resource type="PackedScene" path="res://world/ladder/ladder.tscn" id="5_qih35"]
+[ext_resource type="PackedScene" uid="uid://3ic1wccvydog" path="res://enemies/moving_spike_enemy.tscn" id="6_vhmwn"]
+[ext_resource type="PackedScene" path="res://world/checkpoint/checkpoint.tscn" id="7_jqfb8"]
+[ext_resource type="PackedScene" uid="uid://dfx7tilj0jige" path="res://enemies/stomp_enemy.tscn" id="8_6gy8h"]
+[ext_resource type="PackedScene" uid="uid://c67fvmrc70acp" path="res://world/door/door.tscn" id="9_8uhjy"]
+
+[sub_resource type="Curve2D" id="Curve2D_rfdr4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1.52588e-05, 0, 0, 0, 0, 0, 234, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_mf5tt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1.52588e-05, 0, 0, 0, 0, 0, 1.52588e-05, 45)
+}
+point_count = 2
+
+[node name="Level1" instance=ExtResource("1_20vh3")]
+
+[node name="Player" parent="." index="0"]
+position = Vector2(40, 128)
+
+[node name="Camera" parent="." index="1"]
+position = Vector2(40, 93)
+
+[node name="TileMap" parent="." index="3" instance=ExtResource("2_cji6c")]
+layer_0/tile_data = PackedInt32Array(589824, 65536, 7, 589825, 131072, 7, 589826, 131072, 7, 589827, 131072, 7, 589828, 131072, 7, 589829, 131072, 7, 589830, 131072, 7, 589831, 131072, 7, 589832, 131072, 7, 589833, 131072, 7, 589834, 131072, 7, 589835, 131072, 7, 589836, 131072, 7, 589837, 131072, 7, 589838, 131072, 7, 589839, 131072, 7, 589840, 131072, 7, 589841, 131072, 7, 524305, 131072, 1, 524304, 131072, 1, 524303, 131072, 1, 524302, 131072, 1, 524301, 131072, 1, 524300, 262144, 1, 524299, 131072, 6, 524298, 131072, 6, 524297, 131072, 6, 524296, 131072, 6, 524295, 131072, 6, 524294, 131072, 6, 524293, 131072, 6, 524292, 131072, 6, 524291, 131072, 6, 524290, 131072, 6, 524289, 131072, 6, 524288, 65536, 6, 458759, 262144, 1, 458760, 131072, 1, 458761, 131072, 1, 458762, 131072, 1, 458763, 131072, 1, 458764, 196608, 1, 458752, 65536, 1, 458753, 131072, 1, 458754, 131072, 1, 393219, 65536, 1, 393220, 131072, 1, 393221, 131072, 1, 393222, 131072, 1, 393223, 196608, 1, 458758, 131072, 6, 458757, 131072, 6, 458756, 131072, 6, 458755, 327680, 1, 458770, 65536, 1, 458771, 131072, 1, 458772, 131072, 1, 458773, 196608, 1, 524306, 327680, 1, 524307, 131072, 6, 524308, 131072, 6, 524309, 196608, 6, 589845, 196608, 7, 589844, 131072, 7, 589843, 131072, 7, 589842, 131072, 7, 131080, 524288, 2, 131091, 655360, 2, 131090, 589824, 2, 131089, 589824, 2, 131088, 589824, 2, 131087, 589824, 2, 131086, 589824, 2, 131085, 589824, 2, 131084, 589824, 2, 131083, 589824, 2, 131082, 589824, 2, 131081, 589824, 2, 131093, 458752, 2)
+
+[node name="WalkingEnemy" parent="." index="4" instance=ExtResource("4_de4l8")]
+position = Vector2(243, 144)
+
+[node name="WalkingEnemy2" parent="." index="5" instance=ExtResource("4_de4l8")]
+position = Vector2(126, 108)
+
+[node name="Ladder" type="Node2D" parent="." index="6"]
+
+[node name="Ladder" parent="Ladder" index="0" instance=ExtResource("5_qih35")]
+position = Vector2(360, 36)
+
+[node name="Ladder2" parent="Ladder" index="1" instance=ExtResource("5_qih35")]
+position = Vector2(360, 54)
+
+[node name="Ladder3" parent="Ladder" index="2" instance=ExtResource("5_qih35")]
+position = Vector2(360, 72)
+
+[node name="Ladder4" parent="Ladder" index="3" instance=ExtResource("5_qih35")]
+position = Vector2(360, 90)
+
+[node name="Ladder5" parent="Ladder" index="4" instance=ExtResource("5_qih35")]
+position = Vector2(360, 108)
+
+[node name="MovingSpikeEnemy" parent="." index="7" instance=ExtResource("6_vhmwn")]
+position = Vector2(153, 18)
+curve = SubResource("Curve2D_rfdr4")
+animation_type = 1
+speed = 0.5
+
+[node name="MovingSpikeEnemy2" parent="." index="8" instance=ExtResource("6_vhmwn")]
+position = Vector2(207, 72)
+curve = SubResource("Curve2D_mf5tt")
+animation_type = 1
+speed = 2.0
+
+[node name="Checkpoint" parent="." index="9" instance=ExtResource("7_jqfb8")]
+position = Vector2(18, 126)
+
+[node name="Checkpoint2" parent="." index="10" instance=ExtResource("7_jqfb8")]
+position = Vector2(342, 126)
+
+[node name="StompEnemy" parent="." index="11" instance=ExtResource("8_6gy8h")]
+position = Vector2(80, 56)
+
+[node name="Door" parent="." index="12" instance=ExtResource("9_8uhjy")]
+position = Vector2(162, 36)
+target_level_path = "res://levels/level_2.tscn"

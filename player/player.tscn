@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxpu770henayg"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_5y0ub"]
-[ext_resource type="Script" path="res://player_movement_data.gd" id="2_m2vy1"]
+[ext_resource type="Script" path="res://player/player_movement_data.gd" id="2_m2vy1"]
 [ext_resource type="SpriteFrames" uid="uid://kwmid2n54kr7" path="res://player/resources/player_green_skin.tres" id="2_q8vci"]
 
 [sub_resource type="Resource" id="Resource_lwl1n"]
@@ -18,6 +18,7 @@ double_jump_count = 1
 size = Vector2(12, 17)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 2
 script = ExtResource("1_5y0ub")
 move_data = SubResource("Resource_lwl1n")

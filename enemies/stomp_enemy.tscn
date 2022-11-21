@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfx7tilj0jige"]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://enemies/stomp_enemy.gd" id="1_6xkeu"]
-[ext_resource type="Texture2D" uid="uid://jypl1fenl5sj" path="res://characters_packed.png" id="1_k0hx0"]
+[ext_resource type="Texture2D" uid="uid://jypl1fenl5sj" path="res://assets/textures/characters_packed.png" id="1_k0hx0"]
 [ext_resource type="PackedScene" uid="uid://cyfk3gquma32a" path="res://hitbox/hitbox.tscn" id="2_imq06"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vayvb"]

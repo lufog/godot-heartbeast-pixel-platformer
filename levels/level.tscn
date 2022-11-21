@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyucxy5suye6s"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_ommc5"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="1_xbh6w"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_ommc5")
+
+[node name="Player" parent="." instance=ExtResource("1_xbh6w")]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(0, -35)
+current = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+one_shot = true

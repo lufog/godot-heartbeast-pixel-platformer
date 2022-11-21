@@ -12,7 +12,7 @@ _global_script_classes=[{
 "base": "Area2D",
 "class": &"Ladder",
 "language": &"GDScript",
-"path": "res://ladder/ladder.gd"
+"path": "res://world/ladder/ladder.gd"
 }, {
 "base": "CharacterBody2D",
 "class": &"Player",
@@ -22,7 +22,7 @@ _global_script_classes=[{
 "base": "Resource",
 "class": &"PlayerMovementData",
 "language": &"GDScript",
-"path": "res://player_movement_data.gd"
+"path": "res://player/player_movement_data.gd"
 }]
 _global_script_class_icons={
 "Ladder": "",
@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Pixel Platformer"
-run/main_scene="res://world.tscn"
+run/main_scene="res://levels/level_1.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 

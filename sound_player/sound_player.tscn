@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmm5jleing63h"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://sound_player/sound_player.gd" id="1_mqxtf"]
-[ext_resource type="AudioStream" uid="uid://jd4kycty8l01" path="res://hurt.wav" id="2_eb1t1"]
+[ext_resource type="AudioStream" uid="uid://jd4kycty8l01" path="res://player/sounds/hurt.wav" id="2_eb1t1"]
 
 [node name="SoundPlayer" type="Node"]
 script = ExtResource("1_mqxtf")
